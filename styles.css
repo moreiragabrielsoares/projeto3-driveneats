@@ -46,6 +46,10 @@ h6 {
     font-weight: 400;
 }
 
+ion-icon {
+    color: #ffffff;
+}
+
 
 .barra-topo {
     background-color: #CF2B2B;
@@ -99,10 +103,15 @@ h6 {
     border-color: #ffffff;
     border-width: 4px;
     position: relative;
+    cursor: pointer;
 }
 
 .borda-item-selecionado {
     border-color: #32B72F;
+}
+
+.borda-item-selecionado ion-icon {
+    color: #32B72F;
 }
 
 .container-item ion-icon {
@@ -114,10 +123,6 @@ h6 {
 
 .vetor-item-oculto {
     color: #ffffff;
-}
-
-.vetor-item-selecionado {
-    color: #32B72F;
 }
 
 .container-item img {
