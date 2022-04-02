@@ -1,5 +1,16 @@
-function ativarSelecao (elementoClicado) {
+let pratoPrincipalSelecionado;
+let bebidaSelecionada;
+let sobremesaSelecionada;
+let valorPratoPrincipal;
+let valorPratoPrincipalNum;
+let valorBebida;
+let valorBebidaNum;
+let valorSobremesa;
+let valorSobremesaNum;
+let elementoSelecionado;
 
+function ativarSelecao (elementoClicado) {
+    elementoSelecionado = elementoClicado;
     let divPai = elementoClicado.parentElement;
 
     if (divPai.querySelector(".borda-item-selecionado") !== null) {
@@ -7,18 +18,51 @@ function ativarSelecao (elementoClicado) {
     }
 
     elementoClicado.classList.add("borda-item-selecionado");
+    atualizarValores();
+}
+
+
+function atualizarValores () {
+    if (elementoSelecionado.parentElement.parentElement.classList.contains("container-prato-principal")) {
+        pratoPrincipalSelecionado = elementoSelecionado.querySelector("h4").innerHTML;
+        valorPratoPrincipal = elementoSelecionado.querySelector("h6").innerHTML;
+        valorPratoPrincipal = valorPratoPrincipal.replace("<span>", "");
+        valorPratoPrincipal = valorPratoPrincipal.replace("</span>", "");
+        valorPratoPrincipalNum = elementoSelecionado.querySelector("h6 > span").innerHTML;
+        valorPratoPrincipalNum = valorPratoPrincipalNum.replace(",", ".");
+        valorPratoPrincipalNum = Number(valorPratoPrincipalNum);
+    }
+
+    if (elementoSelecionado.parentElement.parentElement.classList.contains("container-bebida")) {
+        bebidaSelecionada = elementoSelecionado.querySelector("h4").innerHTML;
+        valorBebida = elementoSelecionado.querySelector("h6").innerHTML;
+        valorBebida = valorBebida.replace("<span>", "");
+        valorBebida = valorBebida.replace("</span>", "");
+        valorBebidaNum = elementoSelecionado.querySelector("h6 > span").innerHTML;
+        valorBebidaNum = valorBebidaNum.replace(",", ".");
+        valorBebidaNum = Number(valorBebidaNum);
+    }
+
+    if (elementoSelecionado.parentElement.parentElement.classList.contains("container-sobremesa")) {
+        sobremesaSelecionada = elementoSelecionado.querySelector("h4").innerHTML;
+        valorSobremesa = elementoSelecionado.querySelector("h6").innerHTML;
+        valorSobremesa = valorSobremesa.replace("<span>", "");
+        valorSobremesa = valorSobremesa.replace("</span>", "");
+        valorSobremesaNum = elementoSelecionado.querySelector("h6 > span").innerHTML;
+        valorSobremesaNum = valorSobremesaNum.replace(",", ".");
+        valorSobremesaNum = Number(valorSobremesaNum);
+    }
+   
+    if (pratoPrincipalSelecionado && bebidaSelecionada && sobremesaSelecionada) {
+        document.querySelector(".escondido").classList.remove("escondido");
+    }
+
 }
 
 function criarLinkComMensagemPronta () {
     nomeCliente = prompt("Qual o seu nome?");
     enderecoCliente = prompt("Qual o seu endereço?");
-    let pratoPrincipalSelecionado = "Frango Ying Yang";
-    let bebidaSelecionada = "Coquinha gelada";
-    let sobremesaSelecionada = "Pudim";
-    let valorPratoPrincipal = 10.90;
-    let valorBebida = 10.90;
-    let valorSobremesa = 10.90;
-    let valorFinal = (valorPratoPrincipal + valorBebida + valorSobremesa).toFixed(2);
+    let valorFinal = (valorPratoPrincipalNum + valorBebidaNum + valorSobremesaNum).toFixed(2);
     let mensagemPronta = `Olá, gostaria de fazer o pedido:\n- Prato: ${pratoPrincipalSelecionado}\n- Bebida: ${bebidaSelecionada}\n- Sobremesa: ${sobremesaSelecionada}\nTotal: R$ ${valorFinal}\n\nNome: ${nomeCliente}\nEndereço: ${enderecoCliente}`;
     let encoded = encodeURIComponent(mensagemPronta);
     let linkFinal = `https://wa.me/5521992992511?text=${encoded}`
