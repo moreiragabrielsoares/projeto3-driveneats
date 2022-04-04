@@ -8,6 +8,7 @@ let valorBebidaNum;
 let valorSobremesa;
 let valorSobremesaNum;
 let elementoSelecionado;
+let valorFinal;
 
 function ativarSelecao (elementoClicado) {
     elementoSelecionado = elementoClicado;
@@ -54,15 +55,33 @@ function atualizarValores () {
     }
    
     if (pratoPrincipalSelecionado && bebidaSelecionada && sobremesaSelecionada) {
-        document.querySelector(".escondido").classList.remove("escondido");
+        document.querySelector(".botao-escondido").classList.remove("botao-escondido");
     }
 
+}
+
+
+function ativarTelaConfirmacao () {
+    valorFinal = (valorPratoPrincipalNum + valorBebidaNum + valorSobremesaNum).toFixed(2);
+    let valorFinalTxt = valorFinal.toString();
+    valorFinalTxt = valorFinalTxt.replace(".", ",");
+    document.querySelector(".linha-prato-principal > p").innerHTML = pratoPrincipalSelecionado;
+    document.querySelector(".linha-prato-principal > span").innerHTML = valorPratoPrincipal;
+    document.querySelector(".linha-bebida > p").innerHTML = bebidaSelecionada;
+    document.querySelector(".linha-bebida > span").innerHTML = valorBebida;
+    document.querySelector(".linha-sobremesa > p").innerHTML = sobremesaSelecionada;
+    document.querySelector(".linha-sobremesa > span").innerHTML = valorSobremesa;
+    document.querySelector(".linha-total > span").innerHTML = "R$ " + valorFinalTxt;
+    document.querySelector(".tela-escondida").classList.remove("tela-escondida");
+}
+
+function desativarTelaConfirmacao () {
+    document.querySelector(".tela-confirmacao").classList.add("tela-escondida");
 }
 
 function criarLinkComMensagemPronta () {
     nomeCliente = prompt("Qual o seu nome?");
     enderecoCliente = prompt("Qual o seu endereço?");
-    let valorFinal = (valorPratoPrincipalNum + valorBebidaNum + valorSobremesaNum).toFixed(2);
     let mensagemPronta = `Olá, gostaria de fazer o pedido:\n- Prato: ${pratoPrincipalSelecionado}\n- Bebida: ${bebidaSelecionada}\n- Sobremesa: ${sobremesaSelecionada}\nTotal: R$ ${valorFinal}\n\nNome: ${nomeCliente}\nEndereço: ${enderecoCliente}`;
     let encoded = encodeURIComponent(mensagemPronta);
     let linkFinal = `https://wa.me/5521992992511?text=${encoded}`

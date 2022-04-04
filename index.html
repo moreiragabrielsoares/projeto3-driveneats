@@ -12,6 +12,33 @@
     <title>DrivenEats</title>
 </head>
 <body>
+    <div class="tela-confirmacao tela-escondida">
+        <div class="box-confirmacao">
+            <h2>Confirme seu pedido</h2>
+            <div class="linha-prato-principal">
+                <p>Prato Principal</p>
+                <span>Valor</span>
+            </div>
+            <div class="linha-bebida">
+                <p>Bebida</p>
+                <span>Valor</span>
+            </div>
+            <div class="linha-sobremesa">
+                <p>Sobremesa</p>
+                <span>Valor</span>
+            </div>
+            <div class="linha-total">
+                <p>TOTAL</p>
+                <span>Valor</span>
+            </div>
+            <div class="linha-botao-confirmar">
+                <button onclick="criarLinkComMensagemPronta ()">Tudo certo, pode pedir!</button>
+            </div>
+            <div class="linha-botao-cancelar">
+                <button onclick="desativarTelaConfirmacao ()">Cancelar</button>
+            </div>
+        </div>
+    </div>
     <div class="barra-topo">
         <h1>DrivenEats</h1>
         <h2>Sua comida em 6 minutos</h2>
@@ -105,8 +132,8 @@
     <div class="barra-inferior">
         <button class="botao-inferior botao-fechar-pedido">Selecione os 3 itens <br> para fechar o pedido</button>
     </div>
-    <div class="barra-inferior escondido">
-        <button class="botao-inferior botao-pedido-fechado" onclick="criarLinkComMensagemPronta ()">Fechar pedido</button>
+    <div class="barra-inferior botao-escondido">
+        <button class="botao-inferior botao-pedido-fechado" onclick="ativarTelaConfirmacao ()">Fechar pedido</button>
     </div>
     
 
